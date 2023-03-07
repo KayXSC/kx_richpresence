@@ -1,6 +1,5 @@
 Discord Rich Pressence básico con botones.
 
-| Discord: https://discord.gg/pXnVYmCZBb
 | Preview:
 
 
