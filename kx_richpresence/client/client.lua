@@ -1,34 +1,43 @@
 Citizen.CreateThread(function()
 	while true do
-        -- This is the Application ID (Replace this with you own)
-		SetDiscordAppId(1082728376697110528)
+	local count = 0
 
-        -- Here you will have to put the image name for the "large" icon.
-		SetDiscordRichPresenceAsset('kayxscripts')
-        
-        -- (11-11-2018) New Natives:
+local text = {
+"Algerian Space",
+"Best Server",
+"Serious Staff"
+}
+		for _, __ in pairs(text) do 
+			count = count + 1
+		end
+			
+		local presence  = math.random(1, count)
+		local player = GetPlayerPed(-1)
 
-        -- Here you can add hover text for the "large" icon.
-        SetDiscordRichPresenceAssetText('KayX Base V1')
-       
-        -- Here you will have to put the image name for the "small" icon.
-        SetDiscordRichPresenceAssetSmall('kayxscripts')
+		SetDiscordAppId('1082728376697110528')
+		SetDiscordRichPresenceAsset('kayxscripts') -- Name of the image.
+	        SetDiscordRichPresenceAssetText('KayX Base V1') -- Text that pops up when you hover over the image.
+                SetDiscordRichPresenceAssetSmall('discord') -- Name of the small image.
+		SetDiscordRichPresenceAssetSmallText('https://discord.gg/UWQTPbW') -- Name of the small tsext.
+                SetDiscordRichPresenceAction(0, "GitHub", "https://github.com/neegroo") -- Button 1 and link
+	        SetDiscordRichPresenceAction(1, "Discord", "https://discord.gg/3QNDraU4p4") --  Button 2 and link
 
-        -- Here you can add hover text for the "small" icon.
-        SetDiscordRichPresenceAssetSmallText('This is a lsmall icon with text')
+		while true do
+        Citizen.Wait(1500)
+        players = {}
+        for i = 0, 128 do
+            if NetworkIsPlayerActive( i ) then
+                table.insert( players, i )
+            end
+        end
+        SetRichPresence(""..GetPlayerName(PlayerId()) .. " | ID: " ..GetPlayerServerId(PlayerId()).. " | " .. #players + 0 .. "/64 Jugadores")
 
+	end
 
-        -- (26-02-2021) New Native:
-
-        --[[ 
-            Here you can add buttons that will display in your Discord Status,
-            First paramater is the button index (0 or 1), second is the title and 
-            last is the url (this has to start with "fivem://connect/" or "https://") 
-        ]]--
-        SetDiscordRichPresenceAction(0, "Discord!", "https://discord.gg/pXnVYmCZBb")
-        SetDiscordRichPresenceAction(1, "GitHub!", "https://github.com/neegroo")
-
-        -- It updates every minute just in case.
-		Citizen.Wait(60000)
+	--	SetRichPresence((GetPlayerName(PlayerId())) .. " -") -- [Steam username] [text]
+	--	SetRichPresence("".. text[presence] .."")  -- [text]
+		SetDiscordRichPresenceAssetText('https://discord.gg/3QNDraU4p4')
+		print('^5Discord Rich Pressence by ηєєgяσσ#5546 :D')
+		Citizen.Wait(300000) -- 5 minutes 
 	end
 end)
